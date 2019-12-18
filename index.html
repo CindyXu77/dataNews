@@ -8,18 +8,22 @@
 	<meta name="description" content="Scrollama: Sticky Overlay Example">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel='stylesheet' href='./style.css'>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
 	<style>
 		#scrolly {
 			position: relative;
 			background-color: #f3f3f3;
 			padding: 1rem;
 		}
+
 		article {
 			position: relative;
 			padding: 0;
 			max-width: 20rem;
 			margin: 0 auto;
 		}
+
 		figure {
 			position: -webkit-sticky;
 			position: sticky;
@@ -32,6 +36,7 @@
 			background-color: #8a8a8a;
 			z-index: 0;
 		}
+
 		figure p {
 			text-align: center;
 			padding: 1rem;
@@ -45,18 +50,22 @@
 			font-weight: 900;
 			color: #fff;
 		}
+
 		.step {
 			margin: 0 auto 2rem auto;
 			color: #fff;
 			background-color: rgba(0, 0, 0, 0.1)
 		}
+
 		.step:last-child {
 			margin-bottom: 0;
 		}
+
 		.step.is-active p {
 			background-color: goldenrod;
 			color: #3b3b3b;
 		}
+
 		.step p {
 			text-align: center;
 			padding: 1rem;
@@ -76,13 +85,15 @@
 
 		<section id='scrolly'>
 
-			<figure>
-				<p>0</p>
+			<figure id='figure'>
+				<!-- <div id = 'gif'><img src="img/company_data_trend.gif" alt=""></div>
+				 -->
+				 <p>0</p>
 			</figure>
 
 			<article>
 				<div class='step' data-step='1'>
-					<p>STEP 1</p>
+					 <p>STEP 1</p>
 				</div>
 				<div class='step' data-step='2'>
 					<p>STEP 2</p>
@@ -107,6 +118,10 @@
 	<script src='./stickyfill.min.js'></script>
 	<script src='./scrollama.min.js'></script>
 	<script>
+
+
+		let chartList = ['areachart', 'barchart', 'linechart', 'piechart']
+
 		// using d3 for convenience
 		var main = d3.select('main')
 		var scrolly = main.select('#scrolly');
@@ -137,6 +152,9 @@
 				return i === response.index;
 			})
 			// update graphic based on step
+			// $('#img').remove()
+			// $('#figure').append('<img id="img" src="img/'+response.index+'.png" />')
+			// figure.select('p').text(chartList[response.index]);
 			figure.select('p').text(response.index + 1);
 		}
 		function setupStickyfill() {
