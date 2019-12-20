@@ -4,8 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Scrollama: Sticky Overlay Example</title>
-	<meta name="description" content="Scrollama: Sticky Overlay Example">
+	<title>Died companies</title>
+	<meta name="description" content="Died companies">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel='stylesheet' href='./style.css'>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
@@ -15,14 +15,17 @@
 	<style>
 		#scrolly {
 			position: relative;
-			background-color: #f3f3f3;
-			padding: 1rem;
+			/* background-color: #f3f3f3; */
+			background-color: white;
+			/* 本来是1rem 这样会有空隙 */
+			padding: 0rem;
 		}
 
 		article {
 			position: relative;
 			padding: 0;
-			max-width: 20rem;
+			/* 本来是20rem */
+			/* max-width: 24rem; 			 */
 			margin: 0 auto;
 		}
 
@@ -35,7 +38,7 @@
 			-webkit-transform: translate3d(0, 0, 0);
 			-moz-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
-			background-color: #8a8a8a;
+			/* background-color: #8a8a8a; */
 			z-index: 0;
 		}
 
@@ -56,7 +59,7 @@
 		.step {
 			margin: 0 auto 2rem auto;
 			color: #fff;
-			background-color: rgba(0, 0, 0, 0.1)
+			background-color: rgba(255,255,255,0.9)
 		}
 
 		.step:last-child {
@@ -92,12 +95,13 @@
 				 -->
 				<!-- <p>0</p> -->
 				<!-- <img src="img/treemap.jpg" alt=""> -->
-				<!-- <div class="flourish-embed" data-src="visualisation/1111069"></div> -->
+				<div class="flourish-embed" data-src="visualisation/1111069"></div>
 			</figure>
 
 			<article>
 				<div class='step' data-step='1'>
 					<p>STEP 1</p>
+					<img style="height:100px;width:100px" src="img/treemap.jpg" alt="">
 				</div>
 				<div class='step' data-step='2'>
 					<p>STEP 2</p>
@@ -135,12 +139,20 @@
 		// initialize the scrollama
 		var scroller = scrollama();
 		// generic window resize listener event
+
+		d3.select('.g-circle-packing').selectAll('circle').style("fill","red")
+		
+		// flourish-embed
+
+
 		function handleResize() {
 			// 1. update height of step elements
-			var stepH = Math.floor(window.innerHeight * 0.75);
+			var stepH = Math.floor(window.innerHeight * 0.25);
 			step.style('height', stepH + 'px');
+			step.style('margin-bottom', window.innerHeight + 'px');
 			var figureHeight = window.innerHeight 
 			var figureMarginTop = (window.innerHeight - figureHeight) / 2
+			console.log(figureMarginTop)
 			figure
 				.style('height', figureHeight + 'px')
 				.style('top', figureMarginTop + 'px');
@@ -156,10 +168,14 @@
 				return i === response.index;
 			})
 			// update graphic based on step
-			$('#img').remove()
-			$('#figure').append('<img id="img" src="img/deadReason_' + response.index + '.png" />')
-			// figure.select('p').text(chartList[response.index]);
+			// $('#figure').html('')
+			// $('#figure').append('<img id="img" src="img/circle_' + response.index + '.png" />')
+			// // figure.select('p').text(chartList[response.index]);
 			// figure.select('p').text(response.index + 1);
+			console.log(d3.select('.flourish-embed').selectAll('circle'))
+			let embed = d3.select('.flourish-embed')
+
+			
 		}
 		function setupStickyfill() {
 			d3.selectAll('.sticky').each(function () {
@@ -175,8 +191,8 @@
 			// 3. bind scrollama event handlers (this can be chained like below)
 			scroller.setup({
 				step: '#scrolly article .step',
-				offset: 0.8,
-				debug: true,
+				offset: 0.99,
+				debug: false,
 			})
 				.onStepEnter(handleStepEnter)
 			// setup resize event
