@@ -114,7 +114,7 @@ nav {
 }
 
 #intro {
-  margin-bottom: 320px;
+  margin-bottom: 640px;
 }
 
 #outro {
@@ -126,4 +126,9 @@ nav {
     margin-top: 0;
     margin-left: 2rem;
   }
+}
+
+#figure img{
+  width:100%;
+  height: 100%;
 }

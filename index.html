@@ -10,6 +10,8 @@
 	<link rel='stylesheet' href='./style.css'>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script src="jquery-3.4.1.min.js"></script>
+	
+	<script src="https://public.flourish.studio/resources/embed.js"></script>
 	<style>
 		#scrolly {
 			position: relative;
@@ -88,12 +90,14 @@
 			<figure id='figure'>
 				<!-- <div id = 'gif'><img src="img/company_data_trend.gif" alt=""></div>
 				 -->
-				 <p>0</p>
+				<!-- <p>0</p> -->
+				<!-- <img src="img/treemap.jpg" alt=""> -->
+				<!-- <div class="flourish-embed" data-src="visualisation/1111069"></div> -->
 			</figure>
 
 			<article>
 				<div class='step' data-step='1'>
-					 <p>STEP 1</p>
+					<p>STEP 1</p>
 				</div>
 				<div class='step' data-step='2'>
 					<p>STEP 2</p>
@@ -135,7 +139,7 @@
 			// 1. update height of step elements
 			var stepH = Math.floor(window.innerHeight * 0.75);
 			step.style('height', stepH + 'px');
-			var figureHeight = window.innerHeight / 2
+			var figureHeight = window.innerHeight 
 			var figureMarginTop = (window.innerHeight - figureHeight) / 2
 			figure
 				.style('height', figureHeight + 'px')
@@ -152,10 +156,10 @@
 				return i === response.index;
 			})
 			// update graphic based on step
-			// $('#img').remove()
-			// $('#figure').append('<img id="img" src="img/'+response.index+'.png" />')
+			$('#img').remove()
+			$('#figure').append('<img id="img" src="img/deadReason_' + response.index + '.png" />')
 			// figure.select('p').text(chartList[response.index]);
-			figure.select('p').text(response.index + 1);
+			// figure.select('p').text(response.index + 1);
 		}
 		function setupStickyfill() {
 			d3.selectAll('.sticky').each(function () {
