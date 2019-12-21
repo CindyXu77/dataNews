@@ -10,8 +10,8 @@
 	<link rel='stylesheet' href='./style.css'>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script src="jquery-3.4.1.min.js"></script>
-	
-	<script src="https://public.flourish.studio/resources/embed.js"></script>
+
+
 	<style>
 		#scrolly {
 			position: relative;
@@ -25,7 +25,7 @@
 			position: relative;
 			padding: 0;
 			/* 本来是20rem */
-			/* max-width: 24rem; 			 */
+			max-width: 24rem;
 			margin: 0 auto;
 		}
 
@@ -59,7 +59,10 @@
 		.step {
 			margin: 0 auto 2rem auto;
 			color: #fff;
-			background-color: rgba(255,255,255,0.9)
+			background-color: rgba(255, 255, 255, 0.9);
+
+			border: 1px solid #d1d1d1;
+			box-shadow: 5px 5px 14px rgba(188, 188, 188, 0.5);
 		}
 
 		.step:last-child {
@@ -67,15 +70,15 @@
 		}
 
 		.step.is-active p {
-			background-color: goldenrod;
+			/* background-color: goldenrod; */
 			color: #3b3b3b;
 		}
 
 		.step p {
-			text-align: center;
+			text-align: left;
 			padding: 1rem;
-			font-size: 1.5rem;
-			background-color: #3b3b3b;
+			font-size: 1rem;
+			/* background-color: #3b3b3b; */
 		}
 	</style>
 
@@ -95,22 +98,27 @@
 				 -->
 				<!-- <p>0</p> -->
 				<!-- <img src="img/treemap.jpg" alt=""> -->
-				<div class="flourish-embed" data-src="visualisation/1111069"></div>
+				<div class="flourish-embed" data-src="visualisation/1129604"></div>
+				<!-- <div class="flourish-embed" data-src="visualisation/1111069"></div> -->
 			</figure>
 
 			<article>
 				<div class='step' data-step='1'>
 					<p>STEP 1</p>
-					<img style="height:100px;width:100px" src="img/treemap.jpg" alt="">
+					<!-- <img style="height:100px;width:100px" src="img/treemap.jpg" alt=""> -->
+					<p>将死亡原因分成6个大类，分别是"产品问题"、"运营问题"、"市场定位"、"外部问题"、"团队问题"、"资金问题"。</p>
 				</div>
 				<div class='step' data-step='2'>
-					<p>STEP 2</p>
+					<p>这6个大类，又可以细分为19个小类，如图所示。</p>
 				</div>
 				<div class='step' data-step='3'>
-					<p>STEP 3</p>
+					<p>其中绝大多数行业的公司死亡原因最多的是“商业模式匮乏”。</p>
 				</div>
 				<div class='step' data-step='4'>
-					<p>STEP 4</p>
+					<p>但是也存在着例外。比如汽车交通行业，死亡原因最多的是“行业竞争”，比如作为汽车交通行业的代表性分支——共享单车，即在行业竞争中死亡了一大片公司。</p>
+				</div>
+				<div class='step' data-step='5'>
+					<p>还有金融行业，死亡原因最多的则是“政策监管”。</p>
 				</div>
 			</article>
 
@@ -125,6 +133,7 @@
 	<script src='https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js'></script>
 	<script src='./stickyfill.min.js'></script>
 	<script src='./scrollama.min.js'></script>
+	<script src="https://public.flourish.studio/resources/embed.js"></script>
 	<script>
 
 
@@ -139,18 +148,18 @@
 		// initialize the scrollama
 		var scroller = scrollama();
 		// generic window resize listener event
+		console.log(d3.selectAll('circle'))
+		d3.select('.g-circle-packing').selectAll('circle').style("fill", "red")
 
-		d3.select('.g-circle-packing').selectAll('circle').style("fill","red")
-		
 		// flourish-embed
 
 
 		function handleResize() {
 			// 1. update height of step elements
 			var stepH = Math.floor(window.innerHeight * 0.25);
-			step.style('height', stepH + 'px');
+			// step.style('height', stepH + 'px');
 			step.style('margin-bottom', window.innerHeight + 'px');
-			var figureHeight = window.innerHeight 
+			var figureHeight = window.innerHeight
 			var figureMarginTop = (window.innerHeight - figureHeight) / 2
 			console.log(figureMarginTop)
 			figure
@@ -169,13 +178,14 @@
 			})
 			// update graphic based on step
 			// $('#figure').html('')
-			// $('#figure').append('<img id="img" src="img/circle_' + response.index + '.png" />')
+			// $('#figure').append('<div class="flourish-embed" data-src="visualisation/1111069"></div>')
 			// // figure.select('p').text(chartList[response.index]);
 			// figure.select('p').text(response.index + 1);
-			console.log(d3.select('.flourish-embed').selectAll('circle'))
-			let embed = d3.select('.flourish-embed')
+			// console.log(d3.select('.flourish-embed').selectAll('circle'))
+			// let embed = d3.select('.flourish-embed')
+			$('#figure').append('<img id="img" src="img/circle_' + response.index + '.png" />')
 
-			
+
 		}
 		function setupStickyfill() {
 			d3.selectAll('.sticky').each(function () {
@@ -191,7 +201,7 @@
 			// 3. bind scrollama event handlers (this can be chained like below)
 			scroller.setup({
 				step: '#scrolly article .step',
-				offset: 0.99,
+				offset: 0.79,
 				debug: false,
 			})
 				.onStepEnter(handleStepEnter)
@@ -201,6 +211,7 @@
 		// kick things off
 		init();
 	</script>
+	<script src="https://public.flourish.studio/resources/embed.js"></script>
 </body>
 
 </html>
