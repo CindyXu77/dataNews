@@ -13,10 +13,10 @@
 
 
 	<style>
+
 		#scrolly {
 			position: relative;
 			/* background-color: #f3f3f3; */
-			background-color: white;
 			/* 本来是1rem 这样会有空隙 */
 			padding: 0rem;
 		}
@@ -58,34 +58,25 @@
 
 		.step {
 			margin: 0 auto 2rem auto;
-			color: #fff;
+			/* color: #fff; */
 			background-color: rgba(255, 255, 255, 0.9);
-
-			border: 1px solid #d1d1d1;
-			box-shadow: 5px 5px 14px rgba(188, 188, 188, 0.5);
 		}
 
 		.step:last-child {
 			margin-bottom: 0;
+			/* padding-bottom: 2rem; */
 		}
 
 		.step.is-active p {
 			/* background-color: goldenrod; */
 			color: #3b3b3b;
 		}
-
-		.step p {
-			text-align: left;
-			padding: 1rem;
-			font-size: 1rem;
-			/* background-color: #3b3b3b; */
-		}
 	</style>
 
 </head>
 
 <body>
-
+	<div id="loading"></div>
 	<main>
 		<section id='intro'>
 			<h1 class='intro__hed'>data news</h1>
@@ -97,28 +88,31 @@
 				<!-- <div id = 'gif'><img src="img/company_data_trend.gif" alt=""></div>
 				 -->
 				<!-- <p>0</p> -->
-				<!-- <img src="img/treemap.jpg" alt=""> -->
-				<div class="flourish-embed" data-src="visualisation/1129604"></div>
+				<img src="img/circle_0.png" alt="">
+				<!-- <div class="flourish-embed" data-src="visualisation/1129604"></div> -->
 				<!-- <div class="flourish-embed" data-src="visualisation/1111069"></div> -->
 			</figure>
 
 			<article>
-				<div class='step' data-step='1'>
-					<p>STEP 1</p>
-					<!-- <img style="height:100px;width:100px" src="img/treemap.jpg" alt=""> -->
-					<p>将死亡原因分成6个大类，分别是"产品问题"、"运营问题"、"市场定位"、"外部问题"、"团队问题"、"资金问题"。</p>
+				<div>
+					<div class="subtitle">新经济公司死亡原因大赏</div>
+					<div class='step' data-step='1' style="margin-top: 400px">
+						<!-- <img style="height:100px;width:100px" src="img/treemap.jpg" alt=""> -->
+						<div class="panel"> 将死亡原因分成6个大类，分别是"产品问题"、"运营问题"、"市场定位"、"外部问题"、"团队问题"、"资金问题"。</div>
+					</div>
+					<div class='step' data-step='2'>
+						<div class="panel">这6个大类，又可以细分为19个小类，如图所示。</div>
+					</div>
 				</div>
-				<div class='step' data-step='2'>
-					<p>这6个大类，又可以细分为19个小类，如图所示。</p>
-				</div>
+
 				<div class='step' data-step='3'>
-					<p>其中绝大多数行业的公司死亡原因最多的是“商业模式匮乏”。</p>
+					<div class="panel">其中绝大多数行业的公司死亡原因最多的是“商业模式匮乏”。</div>
 				</div>
 				<div class='step' data-step='4'>
-					<p>但是也存在着例外。比如汽车交通行业，死亡原因最多的是“行业竞争”，比如作为汽车交通行业的代表性分支——共享单车，即在行业竞争中死亡了一大片公司。</p>
+					<div class="panel">但是也存在着例外。比如汽车交通行业，死亡原因最多的是“行业竞争”，比如作为汽车交通行业的代表性分支——共享单车，就在行业竞争中死亡了一大片公司。</div>
 				</div>
 				<div class='step' data-step='5'>
-					<p>还有金融行业，死亡原因最多的则是“政策监管”。</p>
+					<div class="panel">还有金融行业，死亡原因最多的则是“政策监管”。今年315晚会爆出的“714高炮”，各种跑路的网贷公司，网贷行业乱象横生。</div>
 				</div>
 			</article>
 
@@ -136,29 +130,23 @@
 	<script src="https://public.flourish.studio/resources/embed.js"></script>
 	<script>
 
-
-		let chartList = ['areachart', 'barchart', 'linechart', 'piechart']
-
 		// using d3 for convenience
 		var main = d3.select('main')
 		var scrolly = main.select('#scrolly');
 		var figure = scrolly.select('figure');
 		var article = scrolly.select('article');
 		var step = article.selectAll('.step');
+		var subtitle = article.selectAll('.subtitle');
 		// initialize the scrollama
 		var scroller = scrollama();
 		// generic window resize listener event
-		console.log(d3.selectAll('circle'))
-		d3.select('.g-circle-packing').selectAll('circle').style("fill", "red")
-
-		// flourish-embed
-
 
 		function handleResize() {
 			// 1. update height of step elements
 			var stepH = Math.floor(window.innerHeight * 0.25);
 			// step.style('height', stepH + 'px');
 			step.style('margin-bottom', window.innerHeight + 'px');
+			// subtitle.style('margin-bottom', window.innerHeight/1.5 + 'px');
 			var figureHeight = window.innerHeight
 			var figureMarginTop = (window.innerHeight - figureHeight) / 2
 			console.log(figureMarginTop)
@@ -177,15 +165,13 @@
 				return i === response.index;
 			})
 			// update graphic based on step
-			// $('#figure').html('')
+			$('#figure').html('')
 			// $('#figure').append('<div class="flourish-embed" data-src="visualisation/1111069"></div>')
 			// // figure.select('p').text(chartList[response.index]);
 			// figure.select('p').text(response.index + 1);
 			// console.log(d3.select('.flourish-embed').selectAll('circle'))
 			// let embed = d3.select('.flourish-embed')
-			$('#figure').append('<img id="img" src="img/circle_' + response.index + '.png" />')
-
-
+			$('#figure').append('<img id="img" src="img/circle_' + (response.index) + '.png" />')
 		}
 		function setupStickyfill() {
 			d3.selectAll('.sticky').each(function () {
@@ -201,7 +187,7 @@
 			// 3. bind scrollama event handlers (this can be chained like below)
 			scroller.setup({
 				step: '#scrolly article .step',
-				offset: 0.79,
+				offset: 0.99,
 				debug: false,
 			})
 				.onStepEnter(handleStepEnter)
@@ -211,6 +197,7 @@
 		// kick things off
 		init();
 	</script>
+
 	<script src="https://public.flourish.studio/resources/embed.js"></script>
 </body>
 
