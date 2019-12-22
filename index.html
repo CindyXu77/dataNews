@@ -13,7 +13,6 @@
 
 
 	<style>
-
 		#scrolly {
 			position: relative;
 			/* background-color: #f3f3f3; */
@@ -42,18 +41,26 @@
 			z-index: 0;
 		}
 
-		figure p {
+		.title{
+			text-align: center;
+			height:60px;
+			width:100%;
+			position: absolute;
+			top:50px;
+		}
+
+		.title p {
+			margin: 0 auto;
 			text-align: center;
 			padding: 1rem;
-			position: absolute;
-			top: 50%;
+			/* top: 50%;
 			left: 50%;
 			-moz-transform: translate(-50%, -50%);
 			-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
-			font-size: 8rem;
+			transform: translate(-50%, -50%); */
+			font-size: 2rem;
 			font-weight: 900;
-			color: #fff;
+			color: black;
 		}
 
 		.step {
@@ -88,28 +95,47 @@
 				<!-- <div id = 'gif'><img src="img/company_data_trend.gif" alt=""></div>
 				 -->
 				<!-- <p>0</p> -->
-				<img src="img/circle_0.png" alt="">
+				<!-- <img src="img/circle_0.png" alt=""> -->
+				<div class="title">
+						<p>行业趋势</p>
+					</div>
+				<div class="figure-content">
+
+					<div class="bar-race" style="display: block;">
+						<div class="flourish-embed" data-src="visualisation/1112101"></div>
+						<div class="bar-intro">
+							在2011年-啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+						</div>
+					</div>
+					<div class="figure-img">
+
+					</div>
+				</div>
+
 				<!-- <div class="flourish-embed" data-src="visualisation/1129604"></div> -->
 				<!-- <div class="flourish-embed" data-src="visualisation/1111069"></div> -->
 			</figure>
 
 			<article>
-				<div>
-					<div class="subtitle">新经济公司死亡原因大赏</div>
-					<div class='step' data-step='1' style="margin-top: 400px">
-						<!-- <img style="height:100px;width:100px" src="img/treemap.jpg" alt=""> -->
-						<div class="panel"> 将死亡原因分成6个大类，分别是"产品问题"、"运营问题"、"市场定位"、"外部问题"、"团队问题"、"资金问题"。</div>
-					</div>
-					<div class='step' data-step='2'>
-						<div class="panel">这6个大类，又可以细分为19个小类，如图所示。</div>
-					</div>
+				<div class='step' data-step='0' style="margin-top: 250px;margin-bottom: 300px">
+					<!-- <img style="height:100px;width:100px" src="img/treemap.jpg" alt=""> -->
+					<!-- "产品问题"、"运营问题"、"市场定位"、"外部问题"、"团队问题"、"资金问题"。 -->
+					<div class="panel">接下来让我们一起揭秘，新经济公司都有哪些死亡原因？？</div>
 				</div>
-
+				<div class='step' data-step='1'>
+					<!-- <img style="height:100px;width:100px" src="img/treemap.jpg" alt=""> -->
+					<!-- "产品问题"、"运营问题"、"市场定位"、"外部问题"、"团队问题"、"资金问题"。 -->
+					<div class="panel"> 将死亡原因分成6个大类，由死亡数量排序分别是“市场定位”、“外部问题”、“资金问题”、“产品问题”、“运营问题”、“团队问题”。</div>
+				</div>
+				<div class='step' data-step='2'>
+					<div class="panel">这6个大类，又可以细分为19个小类，如图所示。</div>
+				</div>
 				<div class='step' data-step='3'>
 					<div class="panel">其中绝大多数行业的公司死亡原因最多的是“商业模式匮乏”。</div>
 				</div>
 				<div class='step' data-step='4'>
-					<div class="panel">但是也存在着例外。比如汽车交通行业，死亡原因最多的是“行业竞争”，比如作为汽车交通行业的代表性分支——共享单车，就在行业竞争中死亡了一大片公司。</div>
+					<div class="panel">但是也存在着例外。比如汽车交通行业，死亡原因最多的是“行业竞争”，比如作为汽车交通行业的代表性分支——共享单车，就在行业竞争中死亡了一大片公司。
+					</div>
 				</div>
 				<div class='step' data-step='5'>
 					<div class="panel">还有金融行业，死亡原因最多的则是“政策监管”。今年315晚会爆出的“714高炮”，各种跑路的网贷公司，网贷行业乱象横生。</div>
@@ -137,6 +163,8 @@
 		var article = scrolly.select('article');
 		var step = article.selectAll('.step');
 		var subtitle = article.selectAll('.subtitle');
+		var title = figure.selectAll('.title');
+
 		// initialize the scrollama
 		var scroller = scrollama();
 		// generic window resize listener event
@@ -165,13 +193,50 @@
 				return i === response.index;
 			})
 			// update graphic based on step
-			$('#figure').html('')
+
 			// $('#figure').append('<div class="flourish-embed" data-src="visualisation/1111069"></div>')
 			// // figure.select('p').text(chartList[response.index]);
 			// figure.select('p').text(response.index + 1);
 			// console.log(d3.select('.flourish-embed').selectAll('circle'))
 			// let embed = d3.select('.flourish-embed')
-			$('#figure').append('<img id="img" src="img/circle_' + (response.index) + '.png" />')
+			if (response.index === 0) {
+				title.select('p').text('行业趋势');
+			}
+			else if (response.index >= 1 && response.index <= 5) {
+				title.select('p').text('死亡原因大赏');
+			} else {
+				title.select('p').text('');
+			}
+
+
+			if (response.index === 0) {
+				$('.bar-race').css('display', 'block')
+				d3.select('.bar-race')
+					.style('opacity', 1)
+				$('.figure-img').html('')
+				return
+			}
+			if (response.index === 1 && response.direction === 'down') // diyige circle
+			{
+				d3.select('.bar-race').style('opacity', 1)
+					.transition()
+					.duration(2000)
+					.style('opacity', 0)
+
+				$('.bar-race').css('display', 'none')
+				$('.figure-img').html('')
+				$('.figure-img').append('<img id="circle_' + (response.index) + '" src="img/circle_' + (response.index) + '.png" />')
+
+				d3.select('#circle_1')
+					.style('opacity', 0)
+					.transition()
+					.duration(2000)
+					.style('opacity', 1)
+			} else {
+				$('.figure-img').html('')
+				$('.figure-img').append('<img id="circle_' + (response.index) + '" src="img/circle_' + (response.index) + '.png" />')
+
+			}
 		}
 		function setupStickyfill() {
 			d3.selectAll('.sticky').each(function () {

@@ -139,17 +139,13 @@ nav {
   display: none
 }
 
-#figure .flourish-embed{
+#figure .figure-content{
   position: relative;
-  top: 50%; /*偏移*/
+  top: 50%;
   transform: translateY(-50%);
 }
 
-#figure img{
-  position: relative;
-  top: 50%; /*偏移*/
-  transform: translateY(-50%);
-}
+
 
 .subtitle{
   position: sticky;
