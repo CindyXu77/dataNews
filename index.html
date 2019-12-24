@@ -46,7 +46,7 @@
 			height:60px;
 			width:100%;
 			position: absolute;
-			top:50px;
+			top:20px;
 		}
 
 		.title p {
@@ -60,13 +60,13 @@
 			transform: translate(-50%, -50%); */
 			font-size: 2rem;
 			font-weight: 900;
-			color: black;
+			color: white;
 		}
 
 		.step {
 			margin: 0 auto 2rem auto;
 			/* color: #fff; */
-			background-color: rgba(255, 255, 255, 0.9);
+			background-color: rgba(255, 255, 255, 0.1);
 		}
 
 		.step:last-child {
@@ -104,7 +104,7 @@
 					<div class="bar-race" style="display: block;">
 						<div class="flourish-embed" data-src="visualisation/1112101"></div>
 						<div class="bar-intro">
-							在2011年-啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+							在2011年-啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
 						</div>
 					</div>
 					<div class="figure-img">
@@ -133,19 +133,19 @@
 				<div class='step' data-step='3'>
 					<div class="panel">其中绝大多数行业的公司死亡原因最多的是“商业模式匮乏”。</div>
 				</div>
-				<div class='step' data-step='4'>
+				<div class='step' data-step='4' >
 					<div class="panel">但是也存在着例外。比如汽车交通行业，死亡原因最多的是“行业竞争”，比如作为汽车交通行业的代表性分支——共享单车，就在行业竞争中死亡了一大片公司。
 					</div>
 				</div>
-				<div class='step' data-step='5'>
+				<div class='step' data-step='5' id="last-child">
 					<div class="panel">还有金融行业，死亡原因最多的则是“政策监管”。今年315晚会爆出的“714高炮”，各种跑路的网贷公司，网贷行业乱象横生。</div>
 				</div>
 			</article>
-
-
 		</section>
 
-		<section id='outro'></section>
+		<section id='outro'>
+			<div>结束页</div>
+		</section>
 	</main>
 
 	<!-- <div class='debug'></div> -->
@@ -164,6 +164,7 @@
 		var step = article.selectAll('.step');
 		var subtitle = article.selectAll('.subtitle');
 		var title = figure.selectAll('.title');
+		var outro = d3.selectAll('#outro');
 
 		// initialize the scrollama
 		var scroller = scrollama();
@@ -174,6 +175,9 @@
 			var stepH = Math.floor(window.innerHeight * 0.25);
 			// step.style('height', stepH + 'px');
 			step.style('margin-bottom', window.innerHeight + 'px');
+			console.log(step.select('#last-child'))
+			article.select('#last-child').style('margin-bottom', 0);
+			outro.style('min-height', window.innerHeight + 'px');
 			// subtitle.style('margin-bottom', window.innerHeight/1.5 + 'px');
 			var figureHeight = window.innerHeight
 			var figureMarginTop = (window.innerHeight - figureHeight) / 2
@@ -225,7 +229,7 @@
 
 				$('.bar-race').css('display', 'none')
 				$('.figure-img').html('')
-				$('.figure-img').append('<img id="circle_' + (response.index) + '" src="img/circle_' + (response.index) + '.png" />')
+				$('.figure-img').append('<img id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
 
 				d3.select('#circle_1')
 					.style('opacity', 0)
@@ -234,7 +238,7 @@
 					.style('opacity', 1)
 			} else {
 				$('.figure-img').html('')
-				$('.figure-img').append('<img id="circle_' + (response.index) + '" src="img/circle_' + (response.index) + '.png" />')
+				$('.figure-img').append('<img id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
 
 			}
 		}

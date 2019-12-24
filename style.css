@@ -13,8 +13,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   min-height: 1280px;
-  color: #3b3b3b;
+  /* color: #3b3b3b; */
+  color: #d3d3d3;
   font-size: 24px;
+  background-color: black;
 }
 
 p,
@@ -165,11 +167,21 @@ article{
   margin: 0 auto 2rem auto;
   border: 1px solid #d1d1d1;
   box-shadow: 5px 5px 14px rgba(188, 188, 188, 0.5);
+  /* box-shadow: 5px 5px 14px rgba(67, 67, 67, 0.5);  */
   position: relative;
   z-index:2;
   text-align: left;
   padding: 1rem;
   font-size: 1rem;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
+  line-height: 30px;
   /* background-color: #3b3b3b; */
+}
+
+.bar-intro{
+  color:#d3d3d3;
+  margin: 8px 17px 2px;
+  border:1px solid #d3d3d3;
+  padding:20px;
+  font-size:14px;
 }
