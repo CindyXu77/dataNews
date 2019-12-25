@@ -116,14 +116,6 @@ nav {
   }
 }
 
-#intro {
-  margin-bottom: 640px;
-}
-
-#outro {
-  height: 640px;
-}
-
 @media (min-width: 840px) {
   .nav__examples {
     margin-top: 0;
@@ -168,6 +160,21 @@ article{
   border: 1px solid #d1d1d1;
   box-shadow: 5px 5px 14px rgba(188, 188, 188, 0.5);
   /* box-shadow: 5px 5px 14px rgba(67, 67, 67, 0.5);  */
+  position: relative;
+  z-index:2;
+  text-align: left;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  line-height: 30px;
+  /* background-color: #3b3b3b; */
+}
+
+.blank {
+  margin: 0 auto 2rem auto;
+  /* border: 1px solid #d1d1d1;
+  box-shadow: 5px 5px 14px rgba(188, 188, 188, 0.5);
+  box-shadow: 5px 5px 14px rgba(67, 67, 67, 0.5);  */
   position: relative;
   z-index:2;
   text-align: left;
