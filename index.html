@@ -26,6 +26,8 @@
 			/* 本来是20rem */
 			max-width: 24rem;
 			margin: 0 auto;
+			/* 为了能够响应下面的click*/
+			pointer-events: none;
 		}
 
 		figure {
@@ -38,6 +40,7 @@
 			-moz-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
 			/* background-color: #8a8a8a; */
+			background-color: black;
 			z-index: 0;
 		}
 
@@ -87,6 +90,9 @@
 	<main>
 		<section id='intro'>
 			<h1 class='intro__hed'>data news</h1>
+			<!-- <img src="img/news_1.png" alt="">
+			<img src="img/news_1.png" alt="">
+			<img src="img/news_1.png" alt=""> -->
 		</section>
 
 		<section id='scrolly'>
@@ -95,7 +101,7 @@
 				<!-- <div id = 'gif'><img src="img/company_data_trend.gif" alt=""></div>
 				 -->
 				<!-- <p>0</p> -->
-				<!-- <img src="img/circle_0.png" alt=""> -->
+
 				<div class="title">
 					<p>行业趋势</p>
 				</div>
@@ -128,7 +134,7 @@
 					<div class="panel"> 将死亡原因分成6个大类，由死亡数量排序分别是“市场定位”、“外部问题”、“资金问题”、“产品问题”、“运营问题”、“团队问题”。</div>
 				</div>
 				<div class='step' data-step='2'>
-					<div class="panel">这6个大类，又可以细分为19个小类，如图所示。</div>
+					<div class="panel">这6个大类，又可以细分为19个小类，分别为“商业模式匮乏”、“市场伪需求”、“业务调整”、“业务过于分散”、“行业竞争”、”政策监管“、”法律法规风险“、”现金流断裂“、”融资能力不足“、”烧钱“、”“、”“、”“、”“、”“、”“、”“、”“、”“、”“。</div>
 				</div>
 				<div class='step' data-step='3'>
 					<div class="panel">其中绝大多数行业的公司死亡原因最多的是“商业模式匮乏”。</div>
