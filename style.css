@@ -180,9 +180,11 @@ article{
   text-align: left;
   padding: 1rem;
   font-size: 1rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
   line-height: 30px;
+  background-color: transparent;
   /* background-color: #3b3b3b; */
+  
 }
 
 .bar-intro{
@@ -191,4 +193,8 @@ article{
   border:1px solid #d3d3d3;
   padding:20px;
   font-size:14px;
+}
+
+.flourish-embed iframe{
+  width:400px;
 }
