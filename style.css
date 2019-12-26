@@ -211,3 +211,28 @@ article{
 .backgroundYellow {
   background: #edad09;
 }
+
+.logo{
+  position: absolute;
+  top:44px;
+  left:50%;
+  transform: translateX(-50%);
+  width:80px !important;
+  height:80px !important;
+}
+
+.cover_up {
+  background-image: url(img/arrow.gif);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 90px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  margin-left: -45px;
+  bottom: 30px;
+  animation: 2.2s arrow ease-in-out infinite;
+  -webkit-animation: 2.2s arrow ease-in-out infinite;
+  transform: translate3d(0, -25px, 0);
+}
