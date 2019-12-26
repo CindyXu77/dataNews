@@ -117,7 +117,7 @@
 					</div>
 
 					<div class="figure-img" style="max-width:550px;margin:0 auto;">
-						<div id="bangdan" style="display:block">
+						<div id="red-black" style="display:block">
 							<td style="position:relative;">
 								<img style="position:absolute;z-index:100" id="img_0" src="img/img_0.png">
 								<img style="position:absolute;z-index:99" id="img_1" src="img/img_1.png">
@@ -135,8 +135,23 @@
 
 							</td>
 						</div>
-						<div id="treemap" style="display:none;height:100vh;text-align: center;">
-							<img style="z-index:82;max-height:600px;max-width:300px;margin: 0 auto;" id="img_10" src="img/img_10.png">
+						<div id="treemap" style="display:none;height:100vh;">
+							<td style="position:relative;">
+								<img style="position:absolute;z-index:82;"
+									id="img_10" src="img/img_10.png">
+							</td>
+						</div>
+
+						<div id="bangdan" style="display:none;height:100vh">
+							<td style="position:relative;">
+								<img style="position:absolute;z-index:77" id="img_11" src="img/img_11.png">
+								<img style="position:absolute;z-index:76" id="img_12" src="img/img_12.png">
+								<img style="position:absolute;z-index:75" id="img_13" src="img/img_13.png">
+								<img style="position:absolute;z-index:74" id="img_14" src="img/img_14.png">
+								<img style="position:absolute;z-index:73" id="img_15" src="img/img_15.png">
+								<img style="position:absolute;z-index:72" id="img_16" src="img/img_16.png">
+
+							</td>
 						</div>
 					</div>
 
@@ -163,8 +178,6 @@
 
 
 				<div class='step' data-step='5'>
-					<!-- <img style="height:100px;width:100px" src="img/treemap.jpg" alt=""> -->
-					<!-- "产品问题"、"运营问题"、"市场定位"、"外部问题"、"团队问题"、"资金问题"。 -->
 					<div class="panel">接下来让我们一起揭秘，新经济公司都有哪些死亡原因？？</div>
 					<div class="panel"> 将死亡原因分成6个大类，由死亡数量排序分别是<span
 							class="backgroundYellow">“市场定位”</span>、“外部问题”、“资金问题”、“产品问题”、“运营问题”、“团队问题”。</div>
@@ -195,6 +208,7 @@
 				<div class='step' data-step='11'>
 					<div class="panel">对于不同的融资轮次，死亡的原因也是不一样的。对每一个融资轮次进行可视化。可以看到，从”尚未获投“一直到”C轮“，死亡公司的数量逐级递减。</div>
 				</div>
+
 				<div class='step' data-step='11'>
 					<div class="panel">榜单之最</div>
 				</div>
@@ -309,58 +323,140 @@
 			}
 
 			// change
-			if (response.index >= 0 && response.index <= 3) {
-				$('.bar-race').css('display', 'none')
-				$('#circle-packing').css('display', 'none')
-				$('#treemap').css('display', 'none')
-				$('#bangdan').css('display', 'block')
-
-				if (response.index >= 1) {
-					d3.select('#img_' + (response.index - 1))
-						.style('opacity', 1)
-						.transition()
-						.duration(1000)
-						.style('opacity', 0)
+			if (response.direction === 'down') {
+				if (response.index >= 0 && response.index <= 3) {
+					$('.bar-race').css('display', 'none')
+					$('#circle-packing').css('display', 'none')
+					$('#treemap').css('display', 'none')
+					$('#red-black').css('display', 'block')
+					$('#bangdan').css('display', 'none')
+					if (response.index >= 1) {
+						d3.select('#img_' + (response.index - 1))
+							.style('opacity', 1)
+							.transition()
+							.duration(1000)
+							.style('opacity', 0)
+					}
 				}
-			}
-			else if (response.index === 4) {
-				$('#bangdan').css('display', 'none')
-				$('#treemap').css('display', 'none')
-				$('.bar-race').css('display', 'block')
-				d3.select('.bar-race')
-					.style('opacity', 1)
-				d3.select('.flourish-embed').select('iframe').style('max-width', '550px')
-				d3.select('.flourish-embed').select('iframe').style('width', (window.innerWidth - 14) + 'px')
-				// $('.figure-img').html('')
-				return
-			}
-			else if (response.index >= 5 && response.index <= 9) {
-				$('#bangdan').css('display', 'none')
-				$('#treemap').css('display', 'none')
-				$('.bar-race').css('display', 'none')
-				$('#circle-packing').css('display', 'block')
-
-				if (response.index >= 5) {
-					d3.select('#img_' + (response.index - 1))
+				else if (response.index === 4) {
+					$('#bangdan').css('display', 'none')
+					$('#red-black').css('display', 'none')
+					$('#circle-packing').css('display', 'none')
+					$('#treemap').css('display', 'none')
+					$('.bar-race').css('display', 'block')
+					d3.select('.bar-race')
 						.style('opacity', 1)
-						.transition()
-						.duration(1000)
-						.style('opacity', 0)
+					d3.select('.flourish-embed').select('iframe').style('max-width', '550px')
+					d3.select('.flourish-embed').select('iframe').style('width', (window.innerWidth - 14) + 'px')
+					// $('.figure-img').html('')
+					// return
 				}
+				else if (response.index >= 5 && response.index <= 9) {
+					$('#bangdan').css('display', 'none')
+					$('#red-black').css('display', 'none')
+					$('.bar-race').css('display', 'none')
+					$('#treemap').css('display', 'none')
+					$('#circle-packing').css('display', 'block')
+					if (response.index >= 5) {
+						d3.select('#img_' + (response.index - 1))
+							.style('opacity', 1)
+							.transition()
+							.duration(1000)
+							.style('opacity', 0)
+					}
 
-				// $('.figure-img').html('')
-				// $('.figure-img').append('<img id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
+					// $('.figure-img').html('')
+					// $('.figure-img').append('<img id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
 
-			} else if (response.index === 10) {
-				$('#bangdan').css('display', 'none')
-				$('#treemap').css('display', 'block')
-				$('.bar-race').css('display', 'none')
-				$('#circle-packing').css('display', 'none')
-			}
-			else {
-				$('.bar-race').css('display', 'none')
-				// $('.figure-img').html('')
-				// $('.figure-img').append('<img id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
+				} else if (response.index === 10) {
+					$('#bangdan').css('display', 'none')
+					$('#red-black').css('display', 'none')
+					$('#treemap').css('display', 'block')
+					$('.bar-race').css('display', 'none')
+					$('#circle-packing').css('display', 'none')
+
+				} else if (response.index >= 11 && response.index <= 15) {
+					$('#bangdan').css('display', 'block')
+					$('#red-black').css('display', 'none')
+					$('#treemap').css('display', 'none')
+					$('.bar-race').css('display', 'none')
+					$('#circle-packing').css('display', 'none')
+
+					if (response.index >= 11) {
+						d3.select('#img_' + (response.index - 1))
+							.style('opacity', 1)
+							.transition()
+							.duration(1000)
+							.style('opacity', 0)
+					}
+				}
+			} else if (response.direction === 'up') {
+				if (response.index >= 0 && response.index <= 3) {
+					$('.bar-race').css('display', 'none')
+					$('#circle-packing').css('display', 'none')
+					$('#treemap').css('display', 'none')
+					$('#red-black').css('display', 'block')
+					$('#bangdan').css('display', 'none')
+					if (response.index >= 1) {
+						d3.select('#img_' + (response.index - 1))
+							.style('opacity', 0)
+							.transition()
+							.duration(1000)
+							.style('opacity', 1)
+					}
+				}
+				else if (response.index === 4) {
+					$('#bangdan').css('display', 'none')
+					$('#red-black').css('display', 'none')
+					$('#circle-packing').css('display', 'none')
+					$('#treemap').css('display', 'none')
+					$('.bar-race').css('display', 'block')
+					d3.select('.bar-race')
+						.style('opacity', 1)
+					d3.select('.flourish-embed').select('iframe').style('max-width', '550px')
+					d3.select('.flourish-embed').select('iframe').style('width', (window.innerWidth - 14) + 'px')
+					// $('.figure-img').html('')
+					// return
+				}
+				else if (response.index >= 5 && response.index <= 9) {
+					$('#bangdan').css('display', 'none')
+					$('#red-black').css('display', 'none')
+					$('.bar-race').css('display', 'none')
+					$('#treemap').css('display', 'none')
+					$('#circle-packing').css('display', 'block')
+					if (response.index >= 5) {
+						d3.select('#img_' + (response.index - 1))
+							.style('opacity', 0)
+							.transition()
+							.duration(1000)
+							.style('opacity', 1)
+					}
+
+					// $('.figure-img').html('')
+					// $('.figure-img').append('<img id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
+
+				} else if (response.index === 10) {
+					$('#bangdan').css('display', 'none')
+					$('#red-black').css('display', 'none')
+					$('#treemap').css('display', 'block')
+					$('.bar-race').css('display', 'none')
+					$('#circle-packing').css('display', 'none')
+
+				} else if (response.index >= 11 && response.index <= 15) {
+					$('#bangdan').css('display', 'block')
+					$('#red-black').css('display', 'none')
+					$('#treemap').css('display', 'none')
+					$('.bar-race').css('display', 'none')
+					$('#circle-packing').css('display', 'none')
+
+					if (response.index >= 11) {
+						d3.select('#img_' + (response.index - 1))
+							.style('opacity', 0)
+							.transition()
+							.duration(1000)
+							.style('opacity', 1)
+					}
+				}
 			}
 
 			// if (response.index === 4 && response.direction === 'down') // diyige circle

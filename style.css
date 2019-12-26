@@ -139,10 +139,14 @@ nav {
   top: 50%;
   transform: translateY(-50%);
 } */
-#circle-packing img{
+#circle-packing img,#treemap img{
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* #treemap img{
+  transform: translateY(25%);
+} */
 
 
 
