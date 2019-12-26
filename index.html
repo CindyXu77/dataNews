@@ -24,7 +24,7 @@
 			position: relative;
 			padding: 0;
 			/* 本来是20rem */
-			max-width: 24rem;
+			max-width: 22rem;
 			margin: 0 auto;
 			/* 为了能够响应下面的click*/
 			pointer-events: none;
@@ -87,9 +87,12 @@
 <body>
 	<div id="loading"></div>
 	<main>
-		<section id='intro'>
+		<!-- <div class="flourish-embed" data-src="visualisation/1129604"></div><script src="https://public.flourish.studio/resources/embed.js"></script> -->
+		<section id='intro' style="width:100%;">
 			<!-- <h1 class='intro__hed'>data news</h1> -->
-			<img src="img/teaser.png" alt="" style="width:100%;height:100vh;">
+			<div id='teaser' style="width:100%;height:100vh;">
+				<img src="img/teaser-content.png" alt="" style="position:relative;top:10%;width:80%;height:550px">
+			</div>
 		</section>
 
 		<section id='scrolly'>
@@ -104,13 +107,14 @@
 				</div>
 				<div class="figure-content" style="max-width:550px;margin:0 auto;background-color: black">
 
-					<div class="bar-race" style="display:none;width:400px;margin:0 auto;">
+					<div class="bar-race" style="display:none;margin:0 auto;max-width:550px">
 						<div class="flourish-embed" data-src="visualisation/1112101"></div>
 						<div class="bar-intro">
 							在2011年-啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
 						</div>
 					</div>
 					<div class="figure-img" style="max-width:550px;margin:0 auto;">
+
 
 					</div>
 				</div>
@@ -216,6 +220,7 @@
 		var intro = d3.selectAll('#intro');
 		var outro = d3.selectAll('#outro');
 
+		d3.select('#bar-race').style('width',(window.innerWidth-14)+'px')
 		// initialize the scrollama
 		var scroller = scrollama();
 		// generic window resize listener event
@@ -273,7 +278,8 @@
 				$('.bar-race').css('display', 'block')
 				d3.select('.bar-race')
 					.style('opacity', 1)
-				d3.select('.flourish-embed').select('iframe').style('width', '400px')
+				d3.select('.flourish-embed').select('iframe').style('max-width', '550px')
+				d3.select('.flourish-embed').select('iframe').style('width',(window.innerWidth-14)+'px')
 				$('.figure-img').html('')
 				return
 			}
@@ -288,15 +294,25 @@
 
 			} else {
 				$('.bar-race').css('display', 'none')
-				$('.figure-img').html('')
-				$('.figure-img').append('<img id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
+				// $('.figure-img').html('')
+				d3.select('#img_' + (response.index - 1)).transition().duration(300).style('opacity', 0.8)
+
+				setTimeout(function countSecond() {
+					$('.figure-img').html('')
+					$('.figure-img').append('<img style="opacity:0.8" id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
+					d3.select('#img_' + (response.index)).transition().duration(300).style('opacity', 1)
+				}, 300)
+				// setTimeout(function changeState() {
+				// 	$('.figure-img').html('')
+				// 	$('.figure-img').append('<img id="img_' + (response.index) + '" src="img/img_' + (response.index) + '.png" />')
+				// }, 2000);
 
 			}
 
 			// 给要全屏的图片加100vh
-			$('#img_0').css('height','100vh')
-			$('#img_1').css('height','100vh')
-			$('#img_2').css('height','100vh')
+			$('#img_0').css('height', '100vh')
+			$('#img_1').css('height', '100vh')
+			$('#img_2').css('height', '100vh')
 
 		}
 
