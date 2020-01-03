@@ -353,7 +353,7 @@ ul,li{
   top: 18px;
   width: 8px;
   height: 8px;
-  background-color: #f86;
+  background-color: #edad09;
   border: 3px solid #fff;
   content: " ";
   border-radius: 10px;
@@ -377,4 +377,18 @@ ul.timeline:before{
   border-left: 2px solid rgba(221, 209, 209, 0.493);
   height: 100%;
   z-index: 9;
+}
+
+.ghost:before{
+  box-sizing: content-box;
+  position: absolute;
+  display: inline-block;
+  left: -20px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  background-color: #efb336;
+  border: 3px solid #fff;
+  content: " ";
+  border-radius: 10px;
 }
